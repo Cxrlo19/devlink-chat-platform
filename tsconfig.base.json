@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@shared-types/*": ["packages/shared-types/src/*"],
+      "@shared-utils/*": ["packages/shared-utils/src/*"],
+      "@event-bus/*": ["packages/event-bus/src/*"],
+      "@config/*": ["packages/config/src/*"]
+    }
+  }
+}
