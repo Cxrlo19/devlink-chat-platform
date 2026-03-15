@@ -1,22 +1,33 @@
+import "dotenv/config";
 import jwt, { SignOptions } from "jsonwebtoken";
 
-const ACCESS_SECRET = process.env.JWT_ACCESS_SECRET!;
-const REFRESH_SECRET = process.env.JWT_REFRESH_SECRET!;
 const ACCESS_EXPIRES = (process.env.JWT_ACCESS_EXPIRATION || "15m") as SignOptions["expiresIn"];
 const REFRESH_EXPIRES = (process.env.JWT_REFRESH_EXPIRATION || "7d") as SignOptions["expiresIn"];
 
+const getRequiredEnv = (key: "JWT_ACCESS_SECRET" | "JWT_REFRESH_SECRET") => {
+    const value = process.env[key];
+    if (!value) {
+        throw new Error(`${key} is not set`);
+    }
+    return value;
+};
+
 export const createAccessToken = (payload: object) => {
-    return jwt.sign(payload, ACCESS_SECRET, { expiresIn: ACCESS_EXPIRES });
+    const accessSecret = getRequiredEnv("JWT_ACCESS_SECRET");
+    return jwt.sign(payload, accessSecret, { expiresIn: ACCESS_EXPIRES });
 };
 
 export const createRefreshToken = (payload: object) => {
-    return jwt.sign(payload, REFRESH_SECRET, { expiresIn: REFRESH_EXPIRES });
+    const refreshSecret = getRequiredEnv("JWT_REFRESH_SECRET");
+    return jwt.sign(payload, refreshSecret, { expiresIn: REFRESH_EXPIRES });
 };
 
 export const verifyAccessToken = (token: string) => {
-    return jwt.verify(token, ACCESS_SECRET);
+    const accessSecret = getRequiredEnv("JWT_ACCESS_SECRET");
+    return jwt.verify(token, accessSecret);
 };
 
 export const verifyRefreshToken = (token: string) => {
-    return jwt.verify(token, REFRESH_SECRET);
+    const refreshSecret = getRequiredEnv("JWT_REFRESH_SECRET");
+    return jwt.verify(token, refreshSecret);
 };

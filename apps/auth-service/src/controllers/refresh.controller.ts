@@ -6,7 +6,10 @@ import { createAccessToken, createRefreshToken } from "../utils/jwt";
 export const refreshToken = async (req: Request, res: Response) => {
     try {
         // Expect token in body or cookie
-        const { token } = req.body;
+        const token =
+            req.body.token ||
+            req.body.refreshToken ||
+            req.cookies?.refreshToken;
         if (!token) return res.status(401).json({ message: "No refresh token provided" });
 
         // Verify the refresh token
