@@ -1,5 +1,7 @@
 {
-  "name": "devlink",
+  "name": "devlink-chat-platform",
+  "version": "1.0.0",
+  "description": "A real-time chat platform built with microservices architecture using Node.js, Express, MongoDB, and WebSockets",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -8,11 +10,28 @@
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "dev": "npm run dev --workspaces --if-present",
-    "lint": "npm run lint --workspaces --if-present"
+    "lint": "npm run lint --workspaces --if-present",
+    "start": "npm run start --workspaces --if-present",
+    "test": "npm test --workspaces --if-present"
   },
+  "keywords": [
+    "microservices",
+    "chat",
+    "websocket",
+    "authentication",
+    "nodejs",
+    "express",
+    "mongodb",
+    "typescript"
+  ],
+  "author": "DevLink Contributors",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^25.3.3",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
