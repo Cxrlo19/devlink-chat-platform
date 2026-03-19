@@ -168,3 +168,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Built with Node.js, Express, MongoDB, and WebSockets
 - Inspired by modern microservices architectures
+
+Project by Carl Baptiste
